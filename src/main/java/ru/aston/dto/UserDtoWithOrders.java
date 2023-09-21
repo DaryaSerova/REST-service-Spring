@@ -1,7 +1,5 @@
 package ru.aston.dto;
 
-import ru.aston.model.Order;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +9,9 @@ public class UserDtoWithOrders {
 
     private String name;
 
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderDto> orders = new ArrayList<>();
 
     public UserDtoWithOrders() {
-    }
-
-    public UserDtoWithOrders(Long id, String name, List<Order> orders) {
-        this.id = id;
-        this.name = name;
-        this.orders = orders;
     }
 
     public Long getId() {
@@ -38,11 +30,7 @@ public class UserDtoWithOrders {
         this.name = name;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderDto> orders) {
         this.orders = orders;
     }
 }

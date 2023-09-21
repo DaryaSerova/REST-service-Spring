@@ -1,31 +1,33 @@
 package ru.aston.model;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity(name = "user_t")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    private List<Permission> permission = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Order> order;
 
-    private List<Order> orders = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "user_permission_t",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    private List<Permission> permissions;
+
 
     public User(String name) {
         this.name = name;
     }
 
     public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -36,20 +38,8 @@ public class User {
         this.name = name;
     }
 
-    public List<Permission> getPermission() {
-        return permission;
-    }
-
-    public void setPermission(List<Permission> permission) {
-        this.permission = permission;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public List<Order> getOrder() {
+        return order;
     }
 }
 
