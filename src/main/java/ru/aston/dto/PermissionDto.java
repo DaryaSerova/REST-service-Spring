@@ -6,6 +6,11 @@ public class PermissionDto {
 
     private Long userId;
 
+    public PermissionDto(Long permissionId, Long userId) {
+        this.permissionId = permissionId;
+        this.userId = userId;
+    }
+
     public Long getPermissionId() {
         return permissionId;
     }

@@ -13,7 +13,6 @@ public class UserPermissionDto {
 
     private List<Permission> permission = new ArrayList<>();
 
-
     public UserPermissionDto() {
     }
 

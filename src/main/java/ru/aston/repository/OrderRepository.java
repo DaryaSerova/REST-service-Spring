@@ -1,14 +1,10 @@
 package ru.aston.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.aston.model.Order;
 
-public interface OrderRepository {
+@Repository
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Order createOrder(Order order);
-
-    Order findOrderById(Long orderId);
-
-    Order updateOrder(Order order);
-
-    void deleteOrderById(Long orderId, Long userId);
 }
