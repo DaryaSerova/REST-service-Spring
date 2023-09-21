@@ -1,4 +1,4 @@
-package ru.aston.service;
+package ru.aston.service.order;
 
 import ru.aston.dto.NewOrderDto;
 import ru.aston.dto.OrderDto;
@@ -10,7 +10,7 @@ public interface OrderService {
 
     OrderDto getOrderById(Long orderId);
 
-    OrderDto updateOrder(UpdateOrderDto updateOrderDto, Long orderId, Long userId);
+    void updateOrder(UpdateOrderDto updateOrderDto, Long orderId, Long userId);
 
     void deleteOrderById(Long orderId, Long userId);
 
