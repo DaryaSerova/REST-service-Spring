@@ -26,4 +26,7 @@ public class PermissionDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public PermissionDto() {
+    }
 }

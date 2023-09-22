@@ -28,10 +28,10 @@ public class OrderController {
     }
 
     @PatchMapping("/{userId}/{orderId}")
-    public void updateOrder(@PathVariable("userId") Long userId,
-                            @PathVariable("orderId") Long orderId,
-                            @RequestBody UpdateOrderDto updateOrderDto) {
-        orderService.updateOrder(updateOrderDto, orderId, userId);
+    public OrderDto updateOrder(@PathVariable("userId") Long userId,
+                                @PathVariable("orderId") Long orderId,
+                                @RequestBody UpdateOrderDto updateOrderDto) {
+        return orderService.updateOrder(updateOrderDto, orderId, userId);
     }
 
     @DeleteMapping("/{userId}/{orderId}")

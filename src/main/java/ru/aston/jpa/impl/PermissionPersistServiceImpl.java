@@ -25,9 +25,8 @@ public class PermissionPersistServiceImpl implements PermissionPersistService {
     @Override
     @Transactional
     public PermissionDto addPermission(Long userId, Long permissionId) {
-
-        PermissionRepository.PermissionProjection permission = permissionRepository.savePermission(userId, permissionId);
-
+        permissionRepository.savePermission(userId, permissionId);
+        var permission = permissionRepository.findPermissionByUserIdAndPermissionId(userId, permissionId);
         return new PermissionDto(permission.getPermissionId(), permission.getUserId());
     }
 
@@ -37,7 +36,7 @@ public class PermissionPersistServiceImpl implements PermissionPersistService {
         List<PermissionRepository.PermissionProjection> userPermissionProjection =
                 permissionRepository.findPermissionByUserId(userId);
 
-        if (userPermissionProjection == null) {
+        if (userPermissionProjection.size() == 0) {
             throw new RuntimeException(String.format("User with id = %s have not permission.", userId));
         }
         List<Permission> permissions = userPermissionProjection.stream().map(permissionMapper::map)

@@ -8,7 +8,8 @@ import ru.aston.dto.PermissionDto;
 import ru.aston.dto.UserPermissionDto;
 import ru.aston.service.permission.PermissionService;
 
-@RestController("/permission")
+@RestController
+@RequestMapping("/permission")
 public class PermissionController {
 
     @Autowired
@@ -19,7 +20,7 @@ public class PermissionController {
         return permissionService.getPermissionByUserId(userId);
     }
 
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PermissionDto addPermission(@RequestBody NewPermissionUserDto newPermissionUserDto) {
 

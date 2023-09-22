@@ -15,7 +15,7 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
     @Modifying
     @Query(value = "INSERT INTO user_permission_t(permission_id, user_id) VALUES(:permissionId, :userId);",
             nativeQuery = true)
-    PermissionProjection savePermission(@Param("userId") Long userId, @Param("permissionId") Long permissionId);
+    void savePermission(@Param("userId") Long userId, @Param("permissionId") Long permissionId);
 
 
     @Query(value = "SELECT usperm.user_id AS userId, u.name AS userName, perm.type AS permissionType, " +
@@ -26,10 +26,19 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
             "WHERE usperm.user_id = :userId ", nativeQuery = true)
     List<PermissionProjection> findPermissionByUserId(@Param("userId") Long userId);
 
+
+    @Query(value = "SELECT usperm.user_id AS userId, u.name AS userName, perm.type AS permissionType, " +
+            "perm.id AS permissionId " +
+            "FROM user_permission_t AS usperm " +
+            "LEFT JOIN user_t AS u ON usperm.user_id = u.id " +
+            "LEFT JOIN permission_t AS perm ON usperm.permission_id = :permissionId " +
+            "WHERE usperm.user_id = :userId ", nativeQuery = true)
+    PermissionProjection findPermissionByUserIdAndPermissionId(@Param("userId") Long userId, @Param("permissionId") Long permissionId);
+
     @Modifying
-    @Query(value = "DELETE FROM user_permission_t WHERE permission_id = :permissionId AND user_id = :userId;",
+    @Query(value = "DELETE FROM user_permission_t WHERE permission_id = :permissionId AND user_id = :userId",
             nativeQuery = true)
-    void deletePermissionByPermissionIdAndUserId(Long permissionId, Long userId);
+    void deletePermissionByPermissionIdAndUserId(@Param("permissionId") Long permissionId, @Param("userId") Long userId);
 
     interface PermissionProjection {
         Long getUserId();

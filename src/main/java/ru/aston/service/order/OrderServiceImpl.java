@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrder(UpdateOrderDto updateOrderDto, Long orderId, Long userId) {
+    public OrderDto updateOrder(UpdateOrderDto updateOrderDto, Long orderId, Long userId) {
 
         Optional<Order> orderOpt = orderPersistService.getOrderById(orderId);
 
@@ -58,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderOpt.get();
         orderMapper.mergeToOrder(updateOrderDto, order);
         orderPersistService.updateOrder(order);
+        return getOrderById(orderId);
     }
 
     @Override
