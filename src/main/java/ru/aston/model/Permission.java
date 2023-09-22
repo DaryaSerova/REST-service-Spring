@@ -1,9 +1,6 @@
 package ru.aston.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "permission_t")
 public class Permission {
@@ -12,13 +9,13 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private PermissionType type;
 
     public Permission() {
     }
 
-    public Permission(Long id, PermissionType type) {
-        this.id = id;
+    public Permission(PermissionType type) {
         this.type = type;
     }
 

@@ -17,4 +17,12 @@ public class NewPermissionUserDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public NewPermissionUserDto(Long permissionId, Long userId) {
+        this.permissionId = permissionId;
+        this.userId = userId;
+    }
+
+    public NewPermissionUserDto() {
+    }
 }

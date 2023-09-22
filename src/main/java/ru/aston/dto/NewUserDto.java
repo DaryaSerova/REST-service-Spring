@@ -11,4 +11,6 @@ public class NewUserDto {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

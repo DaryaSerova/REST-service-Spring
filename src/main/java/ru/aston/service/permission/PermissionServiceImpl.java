@@ -9,6 +9,7 @@ import ru.aston.jpa.PermissionPersistService;
 import ru.aston.jpa.UserPersistService;
 import ru.aston.model.User;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -43,6 +44,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
+    @Transactional
     public void deletePermission(Long permissionId, Long userId) {
         permissionPersistService.deletePermission(permissionId, userId);
     }

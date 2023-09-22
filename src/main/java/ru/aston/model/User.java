@@ -12,7 +12,7 @@ public class User {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Order> order;
 
@@ -40,6 +40,26 @@ public class User {
 
     public List<Order> getOrder() {
         return order;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }
 

@@ -53,11 +53,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UpdateUserDto updateUserDto, Long userId) {
+    public UserDtoWithOrders updateUser(UpdateUserDto updateUserDto, Long userId) {
 
         User user = findUserById(userId);
         userMapper.mergeToUser(updateUserDto, user);
         userPersistService.updateUser(user);
+        return getUserById(userId);
     }
 
     @Override
