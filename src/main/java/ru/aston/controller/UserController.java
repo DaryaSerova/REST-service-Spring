@@ -9,6 +9,8 @@ import ru.aston.dto.UserDto;
 import ru.aston.dto.UserDtoWithOrders;
 import ru.aston.service.user.UserService;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
@@ -16,7 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto addUser(@RequestBody NewUserDto newUserDto) {
         return userService.createUser(newUserDto);
@@ -34,9 +36,9 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public void updateUser(@PathVariable("userId") Long userId,
-                           @RequestBody UpdateUserDto updateUserDto) {
+    public UserDtoWithOrders updateUser(@PathVariable("userId") Long userId,
+                                        @RequestBody UpdateUserDto updateUserDto) {
 
-        userService.updateUser(updateUserDto, userId);
+        return userService.updateUser(updateUserDto, userId);
     }
 }

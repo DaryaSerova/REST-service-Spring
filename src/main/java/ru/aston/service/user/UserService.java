@@ -11,7 +11,7 @@ public interface UserService {
 
     UserDtoWithOrders getUserById(Long userId);
 
-    void updateUser(UpdateUserDto updateUserDto, Long userId);
+    UserDtoWithOrders updateUser(UpdateUserDto updateUserDto, Long userId);
 
     void deleteUserById(Long userId);
 

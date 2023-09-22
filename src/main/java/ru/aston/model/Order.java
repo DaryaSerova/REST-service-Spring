@@ -32,4 +32,12 @@ public class Order {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
